@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <h2 v-bind:style="{key(css的属性名):value(属性值)}">{{message}}</h2>   -->
+    <!-- 在写CSS属性名的时候，比如font-size
+    我们可以使用驼峰式 (camelCase)  fontSize 
+    或短横线分隔 (kebab-case，记得用单引号括起来) ‘font-size’
+ -->
+    <h2 :style="{'font-size':'50px'}">{{message}}</h2>
+    <h2 :style="{fontSize:'50px'}">{{message}}</h2>
+    <!-- 如果不给50px加括号，会把它当成变量
+  如果写成font-size也要加引号，因为-会被识别成运算符或者表达式
+  -->
+
+    <!-- 使用变量 -->
+    <h2 :style="{fontSize:finalSize}">{{message}}</h2>
+
+    <!-- 使用变量 -->
+    <h2 :style="{fontSize:finalSizeNoUnit + 'px'}">{{message}}</h2>
+
+    <!-- 使用变量 -->
+    <h2 :style="{fontSize:finalSizeNoUnit + 'px', backgroundColor:finalColor}">{{message}}</h2>
+
+    <!-- 使用方法 -->
+    <h2 :style="getStyles()">{{message}}</h2>
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        finalSize: '100px',
+        finalSizeNoUnit: 200,
+        finalColor:'red'
+      },
+      methods: {
+        getStyles:function(){
+          return {fontSize:this.finalSizeNoUnit + 'px', backgroundColor:this.finalColor}
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

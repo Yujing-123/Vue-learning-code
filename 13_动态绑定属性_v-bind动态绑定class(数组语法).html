@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+  <style>
+    .active{
+      color: red;
+    }
+    .line{
+      color: yellow;
+    }
+    .title{
+      font-size: 48px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 这样的话就相当于写死，和 class="title active line" 没啥区别-->
+    <h2 class="title" :class="['active','line']">{{message}}</h2>
+    <!-- 或者把active和line定义成变量 -->
+    <h2 class="title" :class="[active, line]">{{message}}</h2>
+    <!-- 数组用法用的很少，也可以把数组放到method里面 -->
+    <h2 class="title" :class="getClasses()">{{message}}</h2>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        active: 'active',
+        line:'line'
+      },
+      methods: {
+        getClasses: function(){
+          return [this.active, this.line]
+
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- 方法1 ： 直接拼接 语法过于繁琐，不采用，不希望在html里面写逻辑代码)-->
+    <h2>{{firstName + ' ' + lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+
+    <!-- 方法2：使用方法methods调用 -->
+    <h2>{{getFullNmae()}}</h2>
+    <h2>{{getFullNmae()}}</h2>
+    <h2>{{getFullNmae()}}</h2>
+    <h2>{{getFullNmae()}}</h2>
+    <h2>{{getFullNmae()}}</h2>
+
+  
+    <!-- 方法3：使用计算属性coumputed表示 -->
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+  </div>
+
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        firstName: 'first Name',
+        lastName: 'last Name'
+      },
+      //computed:计算属性(),里面的函数起名字的话不需要使用动词，类似于属性的方法
+      computed:{
+        fullName:function(){
+          console.log('fullname computed');//输出了1次
+          return this.firstName + ' ' + this.lastName
+        }
+      },
+      methods: {
+        getFullNmae:function(){
+          console.log('getfullname methods');//输出了5此
+          return this.firstName + ' ' + this.lastName
+        }
+      }
+     });
+
+
+
+
+     /* 
+     
+     总结：
+     computed比methods的性能更好，虽然被调用很多次，但是只需要执行一次
+     computed对内部的计算属性做了一层缓存，来观察里面的东西有没有发生变化，
+     比如firstName和lastName有没有发生变化，如果每次调用
+     发现firstName和lastName都没有变化的话，它就直接把原来的结果返回出去，
+     而不是重新计算。
+     如果把firstName和lastName的值更改的话，会再次调用一次
+     app.firstName = "Apple";
+     fullName
+     //fullname computed 被重新调用了一次
+
+     */
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- checkbox 单选框 布尔值 -->
+    <label for="agree">同意协议</label>
+    <input type="checkbox" name="agree" id="agree" v-model="isAgree">
+    <button :disabled= "!isAgree">进入下一步</button>
+
+
+    <!-- checbox复选框  数组类型-->
+    <label for="sing">唱歌</label>
+    <input type="checkbox" name="hobby" id="sing" value="sing" v-model="selectArr">
+    <label for="dance">跳舞</label>
+    <input type="checkbox" name="hobby" id="dance" value="dance" v-model="selectArr">
+    <label for="rap">rap</label>
+    <input type="checkbox" name="hobby" id="rap" value="rap" v-model="selectArr">
+    <label for="basketball">篮球</label>
+    <input type="checkbox" name="hobby" id="basketball" value="basketball" v-model="selectArr">
+    {{selectArr}}
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        isAgree: false,
+        selectArr:[]
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

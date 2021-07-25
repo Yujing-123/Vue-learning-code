@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <h2>{{message}} </h2>
+    <h2 v-once>{{message}}</h2>
+    <!-- 在控制台输入app.message = 'HEllo!' 之后，只有第一个h2的内容变换，第二个没有 -->
+  </div>
+
+  
+
+    <!-- 
+      在某些情况下，我们可能不希望界面随意的跟随改变
+      这个时候，我们就可以使用一个Vue的指令
+      v-once: 
+      该指令后面不需要跟任何表达式(比如之前的v-for后面是由跟表达式的)
+      该指令表示元素和组件(组件后面才会学习)只渲染一次，不会随着数据的改变而改变。
+
+      v-once只是一个简简单单的指定，后面没有表达式
+    -->
+
+  <script>
+   var app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2>{{firstName + ' ' + lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+
+    <!-- 重复写很麻烦，希望有个fullname变量这样就可以直接显示 -->
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+
+    <!-- 使用方法显示 -->
+    <h2>{{getFullNmae()}}</h2>
+
+    <!-- 但是其实我们想显示一个变量，而不是一个方法，这个时候可以使用计算属性
+    计算属性是当我们需要对我们的数据进行某种变化之后再来进行显示的话，可以在计算属性里面给它重新定义一个属性，
+    并且给你返回它变化之后的数据
+    -->
+
+    <h2>{{fullName}}</h2>
+  </div>
+
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        firstName: 'first Name',
+        lastName: 'last Name'
+      },
+      //computed:计算属性(),里面的函数起名字的话不需要使用动词，类似于属性的方法
+      computed:{
+        fullName:function(){
+          return this.firstName + ' ' + this.lastName
+
+        }
+
+      },
+      methods: {
+        getFullNmae:function(){
+          return this.firstName + ' ' + this.lastName
+        }
+      }
+     });
+  </script>
+</body>
+
+</html>

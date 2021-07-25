@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+        <!-- checbox复选框  数组类型-->
+<!--         <label for="sing">唱歌</label>
+        <input type="checkbox" name="hobby" id="sing" value="sing" v-model="selectArr">
+        <label for="dance">跳舞</label>
+        <input type="checkbox" name="hobby" id="dance" value="dance" v-model="selectArr">
+        <label for="rap">rap</label>
+        <input type="checkbox" name="hobby" id="rap" value="rap" v-model="selectArr">
+        <label for="basketball">篮球</label>
+        <input type="checkbox" name="hobby" id="basketball" value="basketball" v-model="selectArr">
+        -->
+        <label v-for="item in originHobby" :for="item">
+       <input type="checkbox"  :value="item" :id="item" v-model="selectArr">{{item}}
+      </label>
+        {{selectArr}}
+  </div>
+
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        selectArr:[],
+        originHobby:['唱歌','跳舞','rap','篮球']
+
+      },
+      methods: {}
+     });
+  </script>
+</body>
+
+</html>

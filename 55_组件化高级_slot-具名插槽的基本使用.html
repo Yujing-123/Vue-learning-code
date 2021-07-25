@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+<!-- 
+最好的封装方式就是将共性抽取到组件中，将不同暴露为插槽。
+一旦我们预留了插槽，就可以让使用者根据自己的需求，决定插槽中插入什么内容。
+是搜索框，还是文字，还是菜单。由调用者自己来决定。
+ -->
+
+<!-- 
+1.插槽的基本使用，在template中定义slot标签
+2.插槽的默认值 往<slot><button>按钮</button></slot>中间放入默认值
+3.如果有多个值，同时放入到组件进行替换时，一起作为替换元素
+
+  -->
+
+<body>
+  <div id="app">
+    <cpn> <span slot="center">标题中心</span> </cpn><!-- 只替换center的插槽，其他就使用slot的默认值 -->
+    <cpn> <span slot="left">标题左边</span> </cpn>
+    <cpn> <span slot="right">标题右边</span> </cpn>
+    <cpn><span>我没有名字</span></cpn><!-- 只替换没有名字的 -->
+  </div>
+
+  <template id="cpn">
+    <div>
+      <slot name="left"><span>左边</span></slot>
+      <slot name="center"><span>中间</span></slot>
+      <slot name="right"><span>右边</span></slot>
+      <slot><span>没有名字</span></slot>
+    </div>
+  </template>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      methods: {},
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

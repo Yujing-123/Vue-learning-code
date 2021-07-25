@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <label for="male">男</label>
+    <input type="radio" name="sex" id="male" value="nan" v-model="sex">
+
+    <label for="female">女</label>
+    <input type="radio" name="sex" id="female" value="nv" v-model="sex">
+    <h2>{{sex}}</h2>
+  </div>
+<!-- 
+
+给radio的两个设置name的话才会互斥，也就是只能选一个;
+但是如果设置了v-model，也可以不用设置name，对于v-model中后面相同的变量，会给标签自动会设置互斥
+在打印台设置
+app.sex = 'nv'
+后，女的raio会自动被选上
+
+ -->
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        sex:'nan'
+      },
+      methods: {}
+     });
+  </script>
+</body>
+
+</html>

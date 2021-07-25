@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+  <style>
+    /* 结构和样式分类 */
+    table {
+      /* 重点：将单元格合并 */
+      border-collapse: collapse;
+      /* table是块级元素 */
+      margin: 0 auto;
+     
+    }
+
+    thead {
+      background-color: lightslategray;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: center;
+    }
+
+    tbody,
+    thead>tr>td:nth-child(2) {
+      width: 200px;
+    }
+
+    span {
+      margin: 0 10px;
+    }
+
+    .mainArea {
+      margin: 0 auto;
+      width: 556px;
+    }
+
+
+    .showNothing {
+      width: 350px;
+      font-size: 50px;
+      background-color: pink;
+      color: yellow;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="mainArea">
+      <div id="bookTable" v-if="isShow">
+        <table>
+          <thead>
+            <tr>
+              <td v-for="item in bookTitles">{{item}}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in totalBooks">
+              <td>{{index + 1}}</td>
+              <td>{{item.bookName}}</td>
+              <td>{{item.publishDate}}</td>
+              <td>{{getFianlPrice(item.value)}}</td>
+              <td>
+                <button @click="sub(index)">-</button>
+                <span>{{item.purchaseNum}}</span>
+                <button @click="add(index)">+</button>
+              </td>
+              <td><button @click="removeBook">{{item.operation}}</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div>总价：{{totalPrice}}  </div>
+      </div>
+      <div v-else class="showNothing">没有数据显示</div>
+    </div>
+  </div>
+
+  <script>
+    //toFixed() 方法可把 Number 四舍五入为指定小数位数的数字
+    let app = new Vue({
+      el: '#app',
+
+      data: {
+        message: '你好啊',
+        isShow: true,
+        bookTitles: ["No.", "书籍名称", "出版日期", "价格", "购买数量", "操作"],
+
+        totalBooks: [{
+          bookName: "《算法导论》",
+          publishDate: "2006-9",
+          value: "85",
+          purchaseNum: 1,
+          operation: "移除"
+        }, {
+          bookName: "《UNIX编程艺术》",
+          publishDate: "2006-2",
+          value: "59",
+          purchaseNum: 1,
+          operation: "移除"
+        }, {
+          bookName: "《编程珠玑》",
+          publishDate: "2008-10",
+          value: "39",
+          purchaseNum: 1,
+          operation: "移除"
+        }, {
+          bookName: "《代码大全》",
+          publishDate: "2006-03",
+          value: "128",
+          purchaseNum: 1,
+          operation: "移除"
+        }],
+      },
+      methods: {
+        getFianlPrice(price){
+          return "￥ "+ parseInt(price).toFixed(2)
+        },
+        add(index) {
+          this.totalBooks[index].purchaseNum++;
+        },
+        sub(index) {
+          if (this.totalBooks[index].purchaseNum - 1 >= 0) {
+            this.totalBooks[index].purchaseNum--;
+          } else {
+            this.totalBooks[index].purchaseNum = 0;
+          }
+        },
+        removeBook(index) {
+          this.totalBooks.splice(index, 1);
+          if (this.totalBooks.length === 0) {
+            this.isShow = false;
+          }
+        }
+      },
+      computed:{
+        totalPrice() {
+          let totalValue = 0;
+          for (let i = 0; i < this.totalBooks.length; i++) {
+            totalValue +=  this.totalBooks[i].purchaseNum * Number(this.totalBooks[i].value);
+          }
+          return "￥ " + totalValue
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>

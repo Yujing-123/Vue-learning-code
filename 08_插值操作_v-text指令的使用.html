@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}, 李银河</h2>
+    <h2 v-text="message">, 李银河</h2>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊'
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+<!-- 
+
+  1. v-text作用和Mustache比较相似：都是用于将数据显示在界面中
+  2. v-text通常情况下，接受一个string类型
+  3.缺点是会把标签里面的内容覆盖（, 李银河），用起来不灵活
+
+ -->
+
+</html>

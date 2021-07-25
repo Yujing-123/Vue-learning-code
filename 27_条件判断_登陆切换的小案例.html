@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+<!-- 用户再登录时，可以切换使用用户账号登录还是邮箱地址登录。
+ -->
+<body>
+  <div id="app">
+    <span v-if="isUser">
+      <label for="username">用户账号</label>  
+      <input type="text" id="username" placeholder="用户账户">
+    </span>
+    <span v-else>
+      <label for="userMail">用户邮箱</label>
+      <input type="text" id="userMail" placeholder="用户邮箱">
+    </span>
+    <button @click="switchLogIn">切换类型</button>
+  </div>
+
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        isUser:true
+      },
+      methods: {
+        switchLogIn(){
+          this.isUser = !this.isUser
+        }
+      }
+     });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+
+    <!-- 如果向往B后面插入一个F
+    的话，就是
+    splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目
+    arrayObject.splice(index,howmany,item1,.....,itemX) 删除的元素包含index的元素
+    返回值：包含被删除项目的新数组，如果有的话。不删除，是返回空数组 、
+    使用if语句判断数组的长度是否为0，如果为0，则表示是空数组。
+
+    letters.splice(2, 0, "F")//A B F C D E
+
+    其实把
+
+    -->
+
+
+    <!-- 
+    当某一层有很多相同的节点时，也就是列表节点时，我们希望插入一个新的节点
+        我们希望可以在B和C之间加一个F，Diff算法默认执行起来是这样的。
+        即把C更新成F，D更新成C，E更新成D，最后再插入E，是不是很没有效率？
+    所以我们需要使用key来给每个节点做一个唯一标识
+        Diff算法就可以正确的识别此节点
+        找到正确的位置区插入新的节点。
+    所以一句话，key的作用主要是为了高效的更新虚拟DOM。
+
+
+    key相同就复用，key不相同，就创建新的dom
+
+     -->
+  </div>
+
+  <script>
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        letters:['A', 'B', 'C', 'D', 'E']
+      },
+      methods: {}
+     });
+  </script>
+</body>
+
+</html>

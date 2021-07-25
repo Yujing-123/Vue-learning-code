@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  //const obj = new O
+  //const obj = {}//这个大括号叫做对象的字面量
+  //字面量就是一个值，比如变量的值，或者是常量的值（字母，字符串，数字）
+
+const name = 'why';
+const age = 18;
+const height = 1.88;
+
+//es5的写法
+/* const obj = {
+  name: name,
+  age: age,
+  height: height
+} */
+
+//1.es6的属性的增强写法
+/* const obj = {
+  name,
+  age,
+  height
+}
+
+console.log(obj); */
+
+//es5的写法
+/* const obj = {
+  name: 'why',
+  age: 18,
+  run: function(){
+    console.log('在奔跑');
+  },
+  eat: function(){
+    console.log('在吃饭');
+  }
+} */
+
+//2.es6的函数的增强写法
+const obj = {
+  run(){
+    console.log('在奔跑');
+  },
+  eat(){
+    console.log('在吃饭');
+  }
+}
+
+
+</script>
+</html>

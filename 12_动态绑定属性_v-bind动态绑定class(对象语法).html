@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+  <style>
+    .active{
+      color: red;
+    }
+    .line{
+      color: yellow;
+    }
+    .title{
+      font-size: 48px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div id ="app">
+
+    <h2 :class="active">{{message}}</h2>
+    <h2 v-bind:class="{key1:value, key2:value}">{{message}}</h2>
+    <h2 v-bind:class="{类名1:ture, 类名2:false}">{{message}}</h2>
+    <!-- 通过控制布尔值，来决定这个标签有没有这个类名 -->
+    <h2 v-bind:class="{active:isActive, line:isLine}">{{message}}</h2>
+    <button v-on:click="btnClick">点击</button><!--btnClick后面的小括号被省略  -->
+    <!-- 这里会把class合并 -->
+    <h2 class="title" v-bind:class="{active:isActive, line:isLine}">{{message}}</h2>
+    <!-- 用法四：如果过于复杂，可以放在一个methods或者computed中
+      注：classes是一个计算属性
+    -->
+    <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
+  </div>
+
+  <script>
+   var app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      active: 'active',
+      isActive: true,
+      isLine:false //app.isLine = true   <h2 class="active line">你好啊</h2>
+    },
+    methods: {
+      btnClick: function() {
+        this.isActive = !this.isActive;
+      },
+      getClasses: function () {
+        return {active : this.isActive, line : this.isLine}
+        
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>

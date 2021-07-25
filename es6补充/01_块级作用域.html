@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>button01</button>
+  <button>button02</button>
+  <button>button03</button>
+  <button>button04</button>
+  <button>button05</button>
+  <button>button06</button>
+
+  <!-- this始终指向函数声明时所在的作用域下的this的值 -->
+  <script>
+/* ES5之前因为if和for都没有块级作用域的概念，所以在很多时候，我们都必须借助于function的作用域
+来解决应用外面变量的问题
+ES6中，加入了let，let它有if和for的块级作用域
+*/
+
+    //1.变量作用域 ： 变量在什么范围内是可用的
+    //2.没有块级作用域引起的问题：if的块级
+    var func;
+    if (true) {
+      var name = 'why';
+      func = function () {
+        console.log(name);
+      }
+      func()
+    }
+    func()
+    //里面外面都可以使用
+    name = "bushi";
+    func()//会改变打印的结果
+
+    /* 3. 没有块级作用域因为的问题 ： for的块级*/
+    var btns = document.getElementsByTagName('button');
+    /*   for(var i = 0; i < btns.length; i++){
+         btns[i].onclick = function(){
+           console.log("这是第" + i + "个按钮");
+         }
+       } */
+    //都是这是第6个按钮，打印出来的i是6
+
+    //解决方法（1）
+    /* for(var i = 0; i < btns.length; i++){
+      btns[i].index = i;
+      btns[i].onclick = function(){
+        console.log("这是第" + this.index + "个按钮");
+      }
+    } */
+    //解决方法（2）
+    //为什么闭包可以解决问题？因为函数是一个作用域，意味着立即执行函数里面的i不会被外面的i改掉
+    for (var i = 0; i < btns.length; i++) {
+      (function (i) {
+        btns[i].onclick = function () {
+          console.log("这是第" + i + "个按钮");
+        }
+      })(i)
+    }
+
+    //这个函数
+    // function(i){
+    //     btns[i].onclick = function(){
+    //       console.log("这是第" + i + "个按钮");
+    //     }
+    //   }
+
+    //   里面有属于自己的i，i是调用的时候，传进去的值，for循环里面的i随便改，对立即执行函数里面的i没有影响
+
+    //闭包（closure）指有权访问另一个函数作用域中变量的函数
+    //被访问的局部变量所在的函数，我们就成为闭包函数
+    /* 
+    
+    闭包：我们fun这个函数作用域 访问了另外一个函数 fn里面的局部变量 num
+    fn是闭包，变量所在的函数就是闭包函数
+    */
+
+
+function aaa(i){
+  let i = i;
+  btns[i].onclick = function(){
+    console.log("这是第" + i + "个按钮");
+  }
+}
+aaa(1);
+aaa(2);
+aaa(3);
+//每被调用一次就会创建一个新的内存空间，空间里面的每个i都不一样，因为onclick是
+//一个异步函数，所以i这个不会被销毁，会一直存在，这个内存空间会一直存在
+
+
+
+//解决方法3
+    for(let i = 0; i < btns.length; i++){
+      btns[i].onclick = function(){
+        console.log("这是第" + i + "个按钮");
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2>总价格：{{totalPrice}}</h2>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        books: [
+          { id: 110, name: 'Unix编程技术', price: 119 },
+          { id: 111, name: 'JavaScript编程技术', price: 67 },
+          { id: 112, name: 'C++编程技术', price: 126 },
+          { id: 113, name: 'JAVA语言编程技术', price: 219 },
+          { id: 114, name: 'C#编程技术', price: 159 },
+        ]
+      },
+      computed: {
+        totalPrice: function () {
+          var sum = 0;
+          this.books.forEach((elem, index) => {
+            sum += elem.price;
+          });
+          return sum
+
+        }
+
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2>{{fullName}}</h2>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        firstName: 'first Name',
+        lastName: 'last Name'
+      },
+      computed: {
+        /* 其实是计算属性的简写，实际上完整的写法里面 fullName是一个属性名，
+        这样可以在mustache里面直接使用fullName这个属性 */
+        /* fullName: function(){
+          return this.firstName + ' ' + this.lastName
+        }     
+       }, */
+
+       //计算属性的完整写法
+        fullName: {
+          /* 计算属性里面一般只需要实现它的get方法，
+            set方法是不需要实现的，不希望随便给它设置值
+            一般会直接把set属性删除掉
+            它就是一个只读属性
+          */
+          /*  set: function(){
+ 
+           }, */
+          get: function () {
+            /* return 'abc' */
+            return this.firstName + ' ' + this.lastName
+
+          },
+          /* 因为它只有一个get方法，每次这么写都很麻烦，所以使用了简写 */
+
+          /* 如果真想使用set方法也是可以的 */
+
+         /* set: function () {
+            console.log(" i am set method");
+
+          } */
+          /* 
+          app.fullName 就会得到名字
+          app.fullName = " abc " 就会输出(" i am set method");
+          */
+
+          /* 实际上你想设置的话，是需要传入一个参数的 */
+          set:function(newValue){
+            console.log(" i am set method");
+            console.log(newValue);//pp.fullName = " abc "  abc 也会被打印出来
+            //拿到newvalue之后，想把这个值保存起来，拿到newvalue之后，对它做一个截取
+            const names = newValue.split(' ');
+            console.log('this is input name : ' + names);
+            this.firstName = names[0];
+            this.lastName = names[1];
+          }
+        },
+
+
+
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

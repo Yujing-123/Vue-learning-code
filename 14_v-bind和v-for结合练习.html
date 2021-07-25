@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+  <style>
+    ul{
+      list-style: none;
+    }
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<!-- 需求：点击列表中的某一项，那么该项的文字变成红色 -->
+<body>
+  <div id ="app">
+    <ul>
+      <li :class="chooseClasses(index)" v-for="(item, index) in movie" v-on:click="getCurrentIndex(index)">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+   var app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      movie: ['舒克和贝塔', '蓝精灵', '海尔兄弟','大耳朵图图'],
+      isActive: 'active',
+      currentIndex:0
+
+    },
+    methods: {
+      getCurrentIndex: function(index){
+        this.currentIndex = index;
+      },
+      chooseClasses:function(index){
+        if(this.currentIndex === index){
+          return this.isActive
+        }else{
+          return ''
+        }
+      }
+    }
+   });
+  </script>
+</body>
+
+</html>

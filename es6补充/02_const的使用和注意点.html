@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /* 
+  
+  在ES6的开发中，优先使用const，只有需要改变某一个标识符的时候才使用let
+
+  */
+
+ /* const的注意： */
+
+ //1. 一旦给const修饰的标识符被赋值后，不能修改
+ /* const a = 30;
+ a= 20; */
+
+ //2.必须在声明的时候赋值，并且不能再次赋值
+ //const name;Uncaught SyntaxError: Missing initializer in const declaration
+ //name = 20;
+
+ //3.常量的含义是指向的对象不能修改，但是可以改变对象内部的属性
+
+ const obj = {
+   name: 'why',
+   age: 18,
+   height: 1.88
+ }
+ obj.age = 19;
+ console.log(obj);
+</script>
+</html>

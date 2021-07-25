@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <cpn v-bind:cmovies="movies" :cmessage="message"></cpn> -->
+    <!-- <cpn v-bind:cmovies="movies" ></cpn> -->
+     <!-- 这个样子的话就是显示cmessage的默认值，
+    但是如果给cmessage设置required的话，如果没有传message，就会报错-->
+    <cpn :cmessage="message"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <p v-for="item in cmovies">{{item}}</p>
+      <h2>{{cmessage}}</h2> 
+    </div>
+  </template>
+
+  <script>
+    const cpn = {
+      template: '#cpn',
+      //props: ['cmovies','cmessage'],
+      /* 
+      props的值有两种方式：
+      方式一：字符串数组，数组中的字符串就是传递时的名称。(用起来很别扭，明明是变量，却需要用小括号，看起来像是字符串)
+      方式二：对象，对象可以设置传递时的类型，也可以设置默认值等。
+      */
+     props:{
+       //1.类型限制
+       //cmovies: Array,
+       //cmessage: String,
+
+       //2.提供默认值
+       cmessage: {
+         type: String,
+         default: 'aaaaaaa',
+         required: true//这个cmessage必须得传，不传不能使用
+       },
+       cmovies: {
+         type: Array,
+         //default: []//vue2.5.3一下不会报错，但是现在的话，类型是对象或者数组的时候，默认值必须是一个函数
+         default(){
+           return []
+         } 
+       }
+
+
+     },
+      data(){
+        return {
+
+        }
+      }
+
+    }
+   var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        movies: ['海王','海贼王','海尔兄弟']
+      },
+      methods: {},
+      components: {
+        cpn,//对象自变量增强写法 cpn : cpn
+      }
+     });
+
+
+     /* 
+     const name = 'why';
+     const obj = {
+       name: name;
+       //增强写法就是下面，直接写个name
+       name
+     }
+     */
+  </script>
+</body>
+
+</html>

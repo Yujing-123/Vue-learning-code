@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./resource/js/vue.js"></script>
+</head>
+
+<body>
+  <div id ="app">
+    <!-- 这里不希望把img的src写死，让它动态决定 ，一般都是服务器请求的数据放到data里面，在通过语法，动态绑定到img-->
+    <!-- mustache语法是在元素的content里面使用的，在src里面是不能使用的 -->
+  <!-- <img src="{{url}}" alt=""> --><!-- <img src="{{url}}" alt="">   直接把{{url}}当成字符串处理-->
+<!-- 正确做法，使用v-bind指令，给哪个元素绑定值，就给哪个元素前绑定v-bind -->
+<img v-bind:src="url" alt="">
+<a v-bind:href="urllink">百度一下</a>
+
+
+<!-- 语法糖
+
+v-bind有一个对应的语法糖，也就是简写方式
+在开发中，我们通常会使用语法糖的形式，因为这样更加简洁
+-->
+
+<img :src="url" alt="">
+<a :href="urllink">百度一下</a>
+
+
+
+  </div>
+
+  <script>
+   var app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      url:'https://pics6.baidu.com/feed/3801213fb80e7becc074555394cc743099506bc5.jpeg?token=ac20efff0f7d298d5534bd55d6ee8081',
+      urllink:'https://wwww.baidu.com'
+    },
+    methods: {}
+   });
+  </script>
+</body>
+
+</html>
